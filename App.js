@@ -14,9 +14,11 @@ import Ex10 from './screens/Ex10';
 import Ex11 from './screens/Ex11';
 import Ex12 from './screens/Ex12';
 import Bmi from './screens/Bmi';
+import Item from './components/Item'
+import Network from './screens/Network'
 
 export default function App() {
   return (
-    <Bmi />    
+    <Network />    
   );
 }

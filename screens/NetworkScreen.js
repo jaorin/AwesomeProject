@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import {  StyleSheet, Text, View, TextInput, Button, Image, FlatList } from 'react-native';
 import Item from '../components/Item';
 
-export default function Network() {   
+export default function NetworkScreen({ navigation }) {   
     const [movies , setMovies] = useState([]); 
     const getMovies = async () => {
         try{
-            let promise = await fetch('https://www.csbootstrap.com/movies.json');
+            let promise = await fetch('https://www.csbootstrap.com/api/movies');
             let data = await promise.json();
             console.log("Data : " , data);
-            setMovies(data.movies);
+            setMovies(data);
 
         }catch(error){
             console.log("ERROR : " , error);
@@ -59,6 +59,18 @@ export default function Network() {
             
             <Button title="Display Movies" onPress={getMovies} />
             <Button title="Clear" onPress={clear}  color="#841584" />
+
+            <View>                
+                <Button  
+                    onPress={() => navigation.navigate('HomeScreen')}
+                    title="Next"
+                    color=""
+                    />
+            </View> 
+            <Button 
+                title="Create New Movies" 
+                onPress={() => navigation.navigate('NetworkCreateScreen')} 
+                />   
         </View>
     );
 }

@@ -4,11 +4,11 @@ import AntScreen from '../screens/AntScreen';
 import BirdScreen from '../screens/BirdScreen';
 import CatScreen from '../screens/CatScreen';
 import HomeStack from '../navigations/HomeStack'
-import FlexScreen from '../navigations/FlexStack';
 
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import FlexStack from './FlexStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +30,7 @@ export default function BottomTab() {
                 case "CatScreen" : 
                     iconName = 'logo-octocat';
                     break;
-                 case "FlexScreen" : 
+                 case "FlexStack" : 
                     iconName = 'cube-outline';
                     break;    
             }                        
@@ -68,8 +68,8 @@ export default function BottomTab() {
             options={{  title: 'Cat'  }} 
             />
         <Tab.Screen 
-            name="FlexScreen" 
-            component={FlexScreen} 
+            name="FlexStack" 
+            component={FlexStack} 
             options={{  title: 'Flex'  }} 
             />                                    
         

@@ -4,6 +4,7 @@ import AntScreen from '../screens/AntScreen';
 import BirdScreen from '../screens/BirdScreen';
 import CatScreen from '../screens/CatScreen';
 import HomeStack from '../navigations/HomeStack'
+import FlexScreen from '../navigations/FlexStack';
 
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -29,6 +30,9 @@ export default function BottomTab() {
                 case "CatScreen" : 
                     iconName = 'logo-octocat';
                     break;
+                 case "FlexScreen" : 
+                    iconName = 'cube-outline';
+                    break;    
             }                        
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -62,7 +66,12 @@ export default function BottomTab() {
             name="CatScreen" 
             component={CatScreen} 
             options={{  title: 'Cat'  }} 
-            />                                   
+            />
+        <Tab.Screen 
+            name="FlexScreen" 
+            component={FlexScreen} 
+            options={{  title: 'Flex'  }} 
+            />                                    
         
     </Tab.Navigator>       
                    

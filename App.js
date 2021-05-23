@@ -16,6 +16,7 @@ import React from 'react';
 // import BmiScreen from './screens/BmiScreen';
 // import Item from './components/Item'
 // import NetworkScreen from './screens/NetworkScreen';
+
 import { NavigationContainer } from '@react-navigation/native';
 
 import HomeStack from './navigations/HomeStack';
@@ -39,10 +40,12 @@ export default function App() {
                     name="SecondBottomTab" 
                     component={SecondBottomTab} 
                     options={{  title: 'Second Tab'   }} 
-                    />                               
+                    /> 
+                                              
                 
             </RootStack.Navigator>
 
 </NavigationContainer>    
+
   );
 }

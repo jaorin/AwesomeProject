@@ -18,6 +18,8 @@ import React from 'react';
 // import NetworkScreen from './screens/NetworkScreen';
 
 import { NavigationContainer } from '@react-navigation/native';
+import TodoTab from './navigations/TodoTab';
+
 
 import HomeStack from './navigations/HomeStack';
 import BottomTab from './navigations/BottomTab';
@@ -41,6 +43,12 @@ export default function App() {
                     component={SecondBottomTab} 
                     options={{  title: 'Second Tab'   }} 
                     /> 
+                
+                <RootStack.Screen 
+                    name="TodoTab" 
+                    component={TodoTab} 
+                    options={{  title: 'Todo Tab'   }} 
+                    />  
                                               
                 
             </RootStack.Navigator>

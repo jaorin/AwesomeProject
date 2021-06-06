@@ -1,7 +1,9 @@
-import React , { useState, useEffect }from 'react';
+import React , { useState, useEffect, useContext  }from 'react';
 import { View, Text, TouchableOpacity, Image, Button , LogBox , Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import { fb } from '../db_config';
+
 
 export default function UploadFileScreen({ navigation }) { 
 
@@ -18,7 +20,8 @@ export default function UploadFileScreen({ navigation }) {
             if (status2 !== 'granted') {
                console.log('Sorry, we need camera permissions to make this work!');
             }             
-        })();        
+        })();
+            LogBox.ignoreLogs(['Setting a timer']);         
     },[]); 
     
     const [modalVisible, setModalVisible] = useState(false);
@@ -36,8 +39,35 @@ export default function UploadFileScreen({ navigation }) {
         console.log(result);    
         if (!result.cancelled) {
             console.log(result);
+            //SPLIT STRING WITH "/" 
+            //GET LAST ITEM IN ARRAY BY POP()
+            result.filename = result.uri.split('/').pop();
+            setImage(result);
+            setUrl(null);
+            uploadFileFirebase(result);
         }
     };
+
+    const uploadFileFirebase = async (result) => {        
+        console.log("uri : ", result.uri);
+        const response = await fetch(result.uri);
+        const blob = await response.blob();
+        
+        //UPLOAD TO FIREBASE
+        // Create a reference to 'xxxxxxx.jpg'
+        let ref = fb.storage().ref().child(result.filename);
+        ref.put(blob)
+            .then((snapshot)=>{
+                console.log("Upload Success : ");
+                snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    console.log('Download URL : ', downloadURL);
+                    //UPDATE STATE URL
+                    setUrl(downloadURL);
+                });
+            })
+            .catch((error)=>{ console.error("Error : ", error); });
+    };
+
 
 
     return (

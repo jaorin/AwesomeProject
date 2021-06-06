@@ -5,6 +5,8 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fb } from '../db_config';
 import ImageViewer from 'react-native-image-zoom-viewer';
+import * as FileSystem from 'expo-file-system';
+import * as MediaLibrary from 'expo-media-library';
 
 export default function TodoScreen({ navigation }) { 
     const [todos , setTodos] = useState(
@@ -192,7 +194,29 @@ export default function TodoScreen({ navigation }) {
                 >
                 <ImageViewer imageUrls={images}
                     enableSwipeDown={true}
-                    onCancel={()=>{ console.log("SwipeDown"); setModalVisible(false); }} 
+                    onCancel={()=>{ console.log("SwipeDown"); setModalVisible(false); }}
+                    onSave={(uri)=>{
+                        console.log("TEXT : " ,uri);
+                        //SPLIT STRING WITH "/" => ["file:",...,"ImagePicker","df2bbd81-da8c-4e3d-aa26-4b71686ea623.jpg"]
+                        //GET LAST ITEM IN ARRAY BY POP()
+                        //REMOVE ?xxxxxxx after filename
+                        //REMOVE %
+                        let filename = uri.split('/').pop().split('?')[0].replace("%","");
+                        (async () => {             
+                            try{
+                                const response = await FileSystem.downloadAsync(
+                                    uri,
+                                    FileSystem.documentDirectory + filename
+                                );
+                                console.log("response : ", response);
+                                //await saveToLibraryAsync(localUri);
+                                const asset = await MediaLibrary.createAssetAsync(response.uri);
+                                await MediaLibrary.createAlbumAsync("Downloads", asset, false);
+                            }catch(error){
+                                console.error(error);
+                            }                            
+                         })();                        
+                    }} 
                     />
             </Modal>
         </View>

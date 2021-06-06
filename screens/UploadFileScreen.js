@@ -1,4 +1,4 @@
-import React , { useState, useEffect, useContext  }from 'react';
+import React , { useState, useEffect  }from 'react';
 import { View, Text, TouchableOpacity, Image, Button , LogBox , Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
@@ -68,6 +68,31 @@ export default function UploadFileScreen({ navigation }) {
             .catch((error)=>{ console.error("Error : ", error); });
     };
 
+    const onCreate = () => {
+        let new_data = {
+            _id : '_' + Math.random().toString(36).substr(2, 9), 
+            title : url, 
+            completed : false,
+            //user_id : user.uid, 
+            user_id : "Narin ParKobkit", 
+            image_url : url, 
+        };
+        writeTodosFirebase(new_data);        
+    };
+    const writeTodosFirebase = async (new_data) => {
+        fb.firestore().collection("todos")
+            .doc(new_data._id)
+            .set(new_data)
+            .then(function() {
+                console.log("Firestore successfully written!");
+                navigation.navigate('TodoTab');
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });  
+    }
+
+
 
 
     return (
@@ -98,7 +123,7 @@ export default function UploadFileScreen({ navigation }) {
                 })() }
             </View>
             <View style={{ marginHorizontal : 10 ,marginTop : 100}}>
-                <Button title="Save in Todo"  />
+                <Button title="Save in Todo" onPress={onCreate} />
             </View>
 
             <Modal transparent={true} visible={modalVisible} onRequestClose={()=>{ setModalVisible(false); }} >

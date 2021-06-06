@@ -1,9 +1,10 @@
 import React , { useState , useEffect } from 'react';
-import { View , TouchableOpacity, FlatList , Text, LogBox  } from 'react-native';
+import { View , TouchableOpacity, FlatList , Text, LogBox ,Modal,Image } from 'react-native';
 import TodoItem  from '../components/TodoItem';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fb } from '../db_config';
+import ImageViewer from 'react-native-image-zoom-viewer';
 
 export default function TodoScreen({ navigation }) { 
     const [todos , setTodos] = useState(
@@ -13,6 +14,9 @@ export default function TodoScreen({ navigation }) {
             //{ _id : '3' , completed : false,  title : "go to cinema @ 19.00"},
         ]     
     );
+
+    const [modalVisible, setModalVisible] = useState(false);
+    const [images, setImages] = useState([]);
 
     useEffect(() => {               
         //readTodos();
@@ -138,6 +142,8 @@ export default function TodoScreen({ navigation }) {
         }
     }
 
+   
+
 
     return (
         <View style={{ flex : 1 }}>            
@@ -154,6 +160,8 @@ export default function TodoScreen({ navigation }) {
                             onUpdate={onUpdate}
                             onCheck={onCheck}
                             onDelete={onDelete}
+                            setImages={setImages}
+                            setModalVisible={setModalVisible}
                                   />                          
                         );
                     }      
@@ -176,6 +184,17 @@ export default function TodoScreen({ navigation }) {
                 >
                 <Ionicons name='md-add' size={26} />
             </TouchableOpacity> 
+
+            <Modal 
+                visible={modalVisible} 
+                transparent={true}
+                onRequestClose={() => { setModalVisible(false); }}
+                >
+                <ImageViewer imageUrls={images}
+                    enableSwipeDown={true}
+                    onCancel={()=>{ console.log("SwipeDown"); setModalVisible(false); }} 
+                    />
+            </Modal>
         </View>
     );
 }

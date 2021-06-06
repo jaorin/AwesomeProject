@@ -30,13 +30,13 @@ export default function TodoItem(props) {
                 onPress={() => {
                     console.log("Pressed");
                     let images = [
-                        { url: props.item.title, props: { } }
+                        { url: props.item.image_url, props: { } }
                     ];
                     props.setImages(images);
                     props.setModalVisible(true);
                 }}
                 >
-                <Image source={{ uri : props.item.title }} style={{width: 40, height: 40}} resizeMode="cover"/>
+                <Image source={{ uri : props.item.image_url}} style={{width: 40, height: 40}} resizeMode="cover"/>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -46,6 +46,15 @@ export default function TodoItem(props) {
                 name="md-trash"
                 size={23} />
             </TouchableOpacity>
+            <TouchableOpacity
+               onPress={() => props.navigation.navigate('UploadFileScreen', {
+                   todo_id : props.item._id ,
+                   todo_title : props.item.title , 
+                   todo_image_url : props.item.image_url , 
+               }) }
+               style={{  flex : 2 }} >
+               <Ionicons name="md-build" size={23} />
+           </TouchableOpacity>
         </View>             
     );
 }

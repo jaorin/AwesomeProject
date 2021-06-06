@@ -164,6 +164,7 @@ export default function TodoScreen({ navigation }) {
                             onDelete={onDelete}
                             setImages={setImages}
                             setModalVisible={setModalVisible}
+                            navigation={navigation}
                                   />                          
                         );
                     }      

@@ -1,16 +1,25 @@
 import React , { useState, useEffect  }from 'react';
-import { View, Text, TouchableOpacity, Image, Button , LogBox , Modal } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Button , LogBox , Modal,TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { fb } from '../db_config';
 
 
-export default function UploadFileScreen({ navigation }) { 
+export default function UploadFileScreen({ route,navigation }) { 
 
+    const [_id, set_id] = useState('_' + Math.random().toString(36).substr(2, 9));
+    const [title, setTitle] = useState("");
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState(null); 
 
-    useEffect(() => {                        
+    useEffect(() => { 
+        LogBox.ignoreLogs(['Setting a timer']); 
+        if(route.params){
+            const { todo_id , todo_title, todo_image_url } = route.params;
+            set_id(todo_id);
+            setTitle(todo_title);
+            setUrl(todo_image_url);
+            }                        
         (async () => {             
             const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
             if (status !== 'granted') {
@@ -20,8 +29,7 @@ export default function UploadFileScreen({ navigation }) {
             if (status2 !== 'granted') {
                console.log('Sorry, we need camera permissions to make this work!');
             }             
-        })();
-            LogBox.ignoreLogs(['Setting a timer']);         
+        })();   
     },[]); 
     
     const [modalVisible, setModalVisible] = useState(false);
@@ -70,8 +78,9 @@ export default function UploadFileScreen({ navigation }) {
 
     const onCreate = () => {
         let new_data = {
-            _id : '_' + Math.random().toString(36).substr(2, 9), 
-            title : url, 
+            // _id : '_' + Math.random().toString(36).substr(2, 9), 
+            _id : _id, //RANDOM NUMBER
+            title : title, //Empty String
             completed : false,
             //user_id : user.uid, 
             user_id : "Narin ParKobkit", 
@@ -96,11 +105,7 @@ export default function UploadFileScreen({ navigation }) {
 
 
     return (
-        <View  style={{ flex: 1, justifyContent : 'center'}}>            
-            
-            <Text style={{fontSize: 20, textAlign: 'center'}}>
-                React Native Upload File Screen
-            </Text>            
+        <View  style={{ flex: 1, justifyContent : 'center'}}>                      
             <TouchableOpacity  style={{ margin : 10, alignItems : 'center'}}
             onPress={() => { setModalVisible(true); }}  >
                 
@@ -122,6 +127,14 @@ export default function UploadFileScreen({ navigation }) {
                                   }                   
                 })() }
             </View>
+            <TextInput
+                   placeholder="What's in your mind? "
+                   onChangeText={(new_title) => setTitle(new_title) }
+                   value={title}
+               />
+               <Text style={{fontSize: 20, textAlign: 'center'}}>
+                React Native Upload File Screen
+            </Text>  
             <View style={{ marginHorizontal : 10 ,marginTop : 100}}>
                 <Button title="Save in Todo" onPress={onCreate} />
             </View>

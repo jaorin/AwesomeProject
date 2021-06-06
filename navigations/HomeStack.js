@@ -4,6 +4,8 @@ import BmiScreen from '../screens/BmiScreen';
 import NetworkScreen from '../screens/NetworkScreen';
 import HomeScreen from '../screens/HomeScreen';
 import NetworkCreateScreen from '../screens/NetworkCreateScreen';
+import UploadFileScreen from '../screens/UploadFileScreen';
+
 
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -33,6 +35,11 @@ export default function HomeStack() {
                 name="NetworkCreateScreen" 
                 component={NetworkCreateScreen} 
                 options={{ title: 'Movie Create Title' }} 
+                />
+            <Stack.Screen 
+                name="UploadFileScreen" 
+                component={UploadFileScreen} 
+                options={{ title: 'Upload File' }} 
                 />
             
         </Stack.Navigator>

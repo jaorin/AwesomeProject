@@ -26,6 +26,10 @@ export default function HomeScreen({ navigation }) {
                 <TouchableOpacity  onPress={() => navigation.navigate('MapTab') } >                    
                     <Text style={{ padding : 10 }}>Location and Map</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity  onPress={() => navigation.navigate('UploadFileScreen') } >                    
+                    <Text style={{ padding : 10 }}>Upload File</Text>
+                </TouchableOpacity>
                 
             </View> 
 

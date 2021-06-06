@@ -127,14 +127,16 @@ export default function UploadFileScreen({ route,navigation }) {
                                   }                   
                 })() }
             </View>
+            
             <TextInput
                    placeholder="What's in your mind? "
                    onChangeText={(new_title) => setTitle(new_title) }
                    value={title}
                />
-               <Text style={{fontSize: 20, textAlign: 'center'}}>
+            <Text style={{fontSize: 20, textAlign: 'center'}}>
                 React Native Upload File Screen
             </Text>  
+
             <View style={{ marginHorizontal : 10 ,marginTop : 100}}>
                 <Button title="Save in Todo" onPress={onCreate} />
             </View>

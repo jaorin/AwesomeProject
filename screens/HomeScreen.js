@@ -10,15 +10,23 @@ export default function HomeScreen({ navigation }) {
             <View style={{ flex : 1 , alignItems: 'center', justifyContent: 'center' }}>
             <Ionicons name="md-home" size={50} color="#848484" />
                 <Text>Home Screen</Text>
+
                 <TouchableOpacity  onPress={() => navigation.navigate('BmiScreen') } >                    
                     <Text style={{ padding : 10 }}>Go to BMI Screen</Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity  onPress={() => navigation.navigate('SecondBottomTab') } >                    
                     <Text style={{ padding : 10 }}>Go to Second BottomTab</Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity  onPress={() => navigation.navigate('TodoTab') } >                    
                     <Text style={{ padding : 10 }}>To-do List</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity  onPress={() => navigation.navigate('MapTab') } >                    
+                    <Text style={{ padding : 10 }}>Location and Map</Text>
+                </TouchableOpacity>
+                
             </View> 
 
             <View>                

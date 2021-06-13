@@ -26,78 +26,78 @@ const Stack = createStackNavigator();
 export default function FlexStack() {
     return (
         <Stack.Navigator initialRouteName="FlexScreen">
-            <Stack.Screen 
-                name="FlexScreen" 
-                component={FlexScreen} 
-                options={{  title: 'Flex Title'  }} 
-                />
+            <Stack.Screen
+                name="FlexScreen"
+                component={FlexScreen}
+                options={{ title: 'Flex Title' }}
+            />
 
-            <Stack.Screen 
-                name="Ex1Screen" 
-                component={Ex1Screen} 
-                options={{  title: 'Ex1'  }} 
-                />
-        
-            <Stack.Screen 
-                name="Ex2Screen" 
-                component={Ex2Screen} 
-                options={{  title: 'Ex2'  }} 
-                />
-            <Stack.Screen 
-                name="Ex3Screen" 
-                component={Ex3Screen} 
-                options={{  title: 'Ex3'  }} 
-                />
-            <Stack.Screen 
-                name="Ex4Screen" 
-                component={Ex4Screen} 
-                options={{  title: 'Ex4'  }} 
-                />
-            <Stack.Screen 
-                name="Ex5Screen" 
-                component={Ex5Screen} 
-                options={{  title: 'Ex5'  }} 
-                />
-            <Stack.Screen 
-                name="Ex6Screen" 
-                component={Ex6Screen} 
-                options={{  title: 'Ex6'  }} 
-                />
-            <Stack.Screen 
-                name="Ex7Screen" 
-                component={Ex7Screen} 
-                options={{  title: 'Ex7'  }} 
-                />
-            <Stack.Screen 
-                name="Ex8Screen" 
-                component={Ex8Screen} 
-                options={{  title: 'Ex8'  }} 
-                />
-            <Stack.Screen 
-                name="Ex9Screen" 
-                component={Ex9Screen} 
-                options={{  title: 'Ex9'  }} 
-                />
-            <Stack.Screen 
-                name="Ex10Screen" 
-                component={Ex10Screen} 
-                options={{  title: 'Ex10'  }} 
-                />
-            <Stack.Screen 
-                name="Ex11Screen" 
-                component={Ex11Screen} 
-                options={{  title: 'Ex11'  }} 
-                />
-            <Stack.Screen 
-                name="Ex12Screen" 
-                component={Ex12Screen} 
-                options={{  title: 'Ex12'  }} 
-                />
-            
-            
+            <Stack.Screen
+                name="Ex1Screen"
+                component={Ex1Screen}
+                options={{ title: 'Ex1' }}
+            />
+
+            <Stack.Screen
+                name="Ex2Screen"
+                component={Ex2Screen}
+                options={{ title: 'Ex2' }}
+            />
+            <Stack.Screen
+                name="Ex3Screen"
+                component={Ex3Screen}
+                options={{ title: 'Ex3' }}
+            />
+            <Stack.Screen
+                name="Ex4Screen"
+                component={Ex4Screen}
+                options={{ title: 'Ex4' }}
+            />
+            <Stack.Screen
+                name="Ex5Screen"
+                component={Ex5Screen}
+                options={{ title: 'Ex5' }}
+            />
+            <Stack.Screen
+                name="Ex6Screen"
+                component={Ex6Screen}
+                options={{ title: 'Ex6' }}
+            />
+            <Stack.Screen
+                name="Ex7Screen"
+                component={Ex7Screen}
+                options={{ title: 'Ex7' }}
+            />
+            <Stack.Screen
+                name="Ex8Screen"
+                component={Ex8Screen}
+                options={{ title: 'Ex8' }}
+            />
+            <Stack.Screen
+                name="Ex9Screen"
+                component={Ex9Screen}
+                options={{ title: 'Ex9' }}
+            />
+            <Stack.Screen
+                name="Ex10Screen"
+                component={Ex10Screen}
+                options={{ title: 'Ex10' }}
+            />
+            <Stack.Screen
+                name="Ex11Screen"
+                component={Ex11Screen}
+                options={{ title: 'Ex11' }}
+            />
+            <Stack.Screen
+                name="Ex12Screen"
+                component={Ex12Screen}
+                options={{ title: 'Ex12' }}
+            />
+
+
 
         </Stack.Navigator>
     );
 
-  
+
 }

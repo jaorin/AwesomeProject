@@ -17,7 +17,7 @@ export default function NetworkCreateScreen({ navigation }) {
         };
         console.log("Submit : ", data);
         try {
-            let promise = await fetch('https://www.csbootstrap.com/api/movies', {
+            let promise = await fetch('https://rinrinproject.herokuapp.com/api/movies', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

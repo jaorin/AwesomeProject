@@ -6,7 +6,7 @@ export default function NetworkScreen({ navigation }) {
     const [movies, setMovies] = useState([]);
     const getMovies = async () => {
         try {
-            let promise = await fetch('https://www.csbootstrap.com/api/movies');
+            let promise = await fetch('https://rinrinproject.herokuapp.com/api/movies');
             let data = await promise.json();
             console.log("Data : ", data);
             setMovies(data);
